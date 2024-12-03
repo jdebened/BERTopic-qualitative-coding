@@ -12,6 +12,7 @@ Localize the following documents/libraries and put them in correspoding folders 
 - [transformers](https://github.com/huggingface/transformers)
 - [sentence_transformers](https://github.com/UKPLab/sentence-transformers)
 
+```md
 /root
 │
 ├── /20news_groups
@@ -36,3 +37,4 @@ Localize the following documents/libraries and put them in correspoding folders 
 ├── *.sh, .py files
 ├── README.md
 └── .gitignore
+```
