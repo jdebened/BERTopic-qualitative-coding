@@ -41,7 +41,7 @@ Localize the following documents/libraries and put them in correspoding folders 
 
 ## Running
 0. Trial (sample of 80 docs embedded in Python code):
-   - run-trail-llama.shh: Llama 2 label
+  - run-trail-llama.sh: Llama 2 label
     
 1. 20_newsgroups:
   - run-20groups-llama.sh: Llama 2 label
