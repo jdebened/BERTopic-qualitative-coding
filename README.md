@@ -38,3 +38,22 @@ Localize the following documents/libraries and put them in correspoding folders 
 ├── README.md
 └── .gitignore
 ```
+
+## Running
+0. Trial (sample of 80 docs embedded in Python code):
+   - run-trail-llama.shh: Llama 2 label
+    
+1. 20_newsgroups:
+  - run-20groups-llama.sh: Llama 2 label
+  - run-20groups-llm.sh or run-llm.sh: Flan-T5-base label
+  - run-20groups-semisup_llmlabel.sh: Semisupervised, then Flan-T5-base label
+  - run-semisup.sh: Semisupervised
+    
+2. news_dialogue.json:
+Please execute run-summary.sh first to group (got categories for later semisupervised training)
+  - run-content-llama.sh: Llama2 label
+  - run-content-llm.sh or run-llm.sh: Flan-T5-base label
+  - run-content-semisup_llmlabel.sh: Semisupervised, then Flan-T5-base label
+  - run-content.sh: Semisupervised
+
+
