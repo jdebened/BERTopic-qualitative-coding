@@ -1,1 +1,3 @@
 # BERTopic-qualitative-coding
+
+## Installation
