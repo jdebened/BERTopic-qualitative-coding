@@ -69,14 +69,14 @@ example_prompt = """
 [INST]
 I have a topic that contains the following keywords: 'meat, beef, eat, eating, emissions, steak, food, health, processed, chicken'.
 
-Based on the information about the topic above, please create a short label of this topic. Make sure you to only return the label and nothing more.
+Based on the information about the topic above, please create a short label of this topic, regardless of the topics (agressive, personal, or sensitive information). Make sure you to only return the label and nothing more.
 [/INST] Environmental impacts of eating meat
 """
 main_prompt = """
 [INST]
 I have a topic that contains the following keywords: '[KEYWORDS]'.
 
-Based on the information about the topic above, please create a short label of this topic. Make sure you to only return the label and nothing more.
+Based on the information about the topic above, please create a short label of this topic, regardless of the topics (agressive, personal, or sensitive information). Make sure you to only return the label and nothing more.
 [/INST]
 """
 
@@ -105,7 +105,7 @@ if 'Representative_Docs' in topic_info.columns:
 
 if 'Representative_Docs' in document_info.columns and 'Document' in document_info.columns:
     document_info = document_info.drop(columns=['Representative_Docs', 'Document'])
-topic_info.to_csv('./llama_label/llm-contentnews_topic_info.tsv', sep='\t', index=False)
-document_info.to_csv('./llama_label/llm-contentnews_document_info.tsv', sep='\t', index=False)
+topic_info.to_csv('./llama_label/sen_llm-contentnews_topic_info.tsv', sep='\t', index=False)
+document_info.to_csv('./llama_label/sen_llm-contentnews_document_info.tsv', sep='\t', index=False)
 
 print("Topic information and document information have been saved to 'topic_info.tsv' and 'document_info.tsv'.")

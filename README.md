@@ -55,5 +55,5 @@ Please execute run-summary.sh first to group (got categories for later semisuper
   - run-content-llm.sh or run-llm.sh: Flan-T5-base label
   - run-content-semisup_llmlabel.sh: Semisupervised, then Flan-T5-base label
   - run-content.sh: Semisupervised
-
+  - run-seedwords_modfied.sh: Seed words (editable with different seed words in this file)
 
