@@ -2,6 +2,7 @@ from bertopic import BERTopic
 import ijson
 import csv
 import random
+from sklearn.feature_extraction.text import CountVectorizer
 
 summaries = []
 with open('news_dialogue.json', 'r') as f:
@@ -85,8 +86,9 @@ prompt = system_prompt + example_prompt + main_prompt
 llama2 = TextGeneration(generator, prompt=prompt)
 representation_model = {"Llama2": llama2}
 
+vectorizer_model = CountVectorizer(stop_words="english")
 # topic_model = BERTopic(representation_model=representation_model, embedding_model=sentence_model)
-topic_model = BERTopic(embedding_model=sentence_model, representation_model=representation_model, top_n_words=30, nr_topics = 15, verbose=True)
+topic_model = BERTopic(embedding_model=sentence_model, vectorizer_model=vectorizer_model, representation_model=representation_model, top_n_words=60, nr_topics = 15, verbose=True)
 topics, probs = topic_model.fit_transform(docs, embeddings)
 
 topic_info = topic_model.get_topic_info()
@@ -105,3 +107,32 @@ topic_info.to_csv('./modified/llama_content_topic_info.tsv', sep='\t', index=Fal
 document_info.to_csv('./modified/llama_content_document_info.tsv', sep='\t', index=False)
 
 print("Topic information and document information have been saved to 'topic_info.tsv' and 'document_info.tsv'.")
+
+# --- Visualization ---
+print("\nGenerating visualizations...")
+
+# Visualize Documents
+print("Creating document visualization...")
+fig_docs = topic_model.visualize_documents(docs)
+fig_docs.write_html('./modified/documents_visualization.html')
+print("Document visualization saved to ./modified/documents_visualization.html")
+
+# Visualize Topic Hierarchy
+print("Creating topic hierarchy visualization...")
+fig_hierarchy = topic_model.visualize_hierarchy()
+fig_hierarchy.write_html('./modified/topic_hierarchy.html')
+print("Topic hierarchy visualization saved to ./modified/topic_hierarchy.html")
+
+# Additional useful visualizations
+print("Creating topic-term visualization...")
+fig_barchart = topic_model.visualize_barchart()
+fig_barchart.write_html('./modified/topics_barchart.html')
+print("Topics barchart saved to ./modified/topics_barchart.html")
+
+# Note: To save as PNG, you can use:
+fig_docs.write_image('./modified/documents_visualization.png')
+fig_hierarchy.write_image('./modified/topic_hierarchy.png')
+fig_barchart.write_image('./modified/topics_barchart.png')
+# (requires kaleido: pip install kaleido)
+
+print("\nAll visualizations completed!")

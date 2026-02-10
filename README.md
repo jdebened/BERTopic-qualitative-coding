@@ -40,7 +40,9 @@ Localize the following documents/libraries and put them in correspoding folders 
 ```
 
 ## Running
+  
 0. Trial (sample of 80 docs embedded in Python code):
+  - pip install -r requirements.txt 
   - run-trail-llama.sh: Llama 2 label
     
 1. 20_newsgroups:
@@ -50,10 +52,13 @@ Localize the following documents/libraries and put them in correspoding folders 
   - run-semisup.sh: Semisupervised
     
 2. news_dialogue.json:
-Please execute run-summary.sh first to group (got categories for later semisupervised training)
-  - run-content-llama.sh: Llama2 label
+Please execute run-summary.sh first to group (got categories for later semisupervised training, put in dir ```org```), creat directory (```modified, clean_modified, sim_modified, new, clean_new, sim_new```)
+  - run-content-llama_modified.sh: Llama2 label
+  - run-content-llama_new.sh: Llama2 label (with outlier reduction)
   - run-content-llm.sh or run-llm.sh: Flan-T5-base label
   - run-content-semisup_llmlabel.sh: Semisupervised, then Flan-T5-base label
   - run-content.sh: Semisupervised
   - run-seedwords_modfied.sh: Seed words (editable with different seed words in this file)
 
+3. Aggregated Statistics
+  - python test.py (may change internal file if needed)
