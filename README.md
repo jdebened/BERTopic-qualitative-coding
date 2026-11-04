@@ -68,3 +68,6 @@ Please execute run-contentF-summary.sh first to group (got categories for later 
 Please execute `python mts_preprocess.py` first to create `mts_dialog_merged.json`, then submit one of the following jobs:
   - `sbatch mts-run-llama_fixed_outlier.sh`: Llama2 label + Fixed number of topics (n = 5, 10, 15, 20, 25)
   - `sbatch mts-run-llama_variable_outlier.sh`: Llama2 label + Variable number of topics
+
+5. Topic model evaluation:
+  - `python test.py`: Compare topic models using coherence, diversity, anchor strength, overlap, and outlier percentage.
