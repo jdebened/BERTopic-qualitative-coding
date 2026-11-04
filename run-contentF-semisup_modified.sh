@@ -2,7 +2,6 @@
 
 #SBATCH --job-name=content-semisupervised-modified
 #SBATCH --time=06:00:00
-#SBATCH --account=comp_sci
 #SBATCH --partition=gpu
 #SBATCH --nodes=1
 #SBATCH --mail-type=end
@@ -10,6 +9,10 @@
 
 #### Load necessary modules
 module load python/3.8
+
+export CUDA_VISIBLE_DEVICES=0
+echo "[INFO] Using GPU $CUDA_VISIBLE_DEVICES"
+
 
 echo "---------- Start job $SLURM_JOBID"
 
@@ -19,7 +22,7 @@ conda activate topic
 pip install -e .
 
 #### Run the eval_blimp.sh script
-python ./content_semisup_modified.py
+python ./semisup_content_modified.py
 
 echo "----------- Job $SLURM_JOBID complete"
 

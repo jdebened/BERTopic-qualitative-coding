@@ -49,9 +49,7 @@ print(len(docs), len(categories), len(category_names))
 
 
 from sentence_transformers import SentenceTransformer
-
-model_path = './all-MiniLM-L6-v2'  
-sentence_model = SentenceTransformer(model_path)
+sentence_model = SentenceTransformer("all-MiniLM-L6-v2", cache_folder="./models")
 
 topic_model = BERTopic(embedding_model=sentence_model)
 topics, probs = topic_model.fit_transform(docs)

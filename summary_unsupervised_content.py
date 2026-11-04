@@ -14,10 +14,8 @@ with open('news_dialogue.json', 'r') as f:
 
 docs = summaries
             
-from sentence_transformers import SentenceTransformer
-
-model_path = './all-MiniLM-L6-v2'  
-sentence_model = SentenceTransformer(model_path)
+from sentence_transformers import SentenceTransformer   
+sentence_model = SentenceTransformer("all-MiniLM-L6-v2", cache_folder="./models")
 
 topic_model = BERTopic(embedding_model=sentence_model)
 topics, probs = topic_model.fit_transform(docs)

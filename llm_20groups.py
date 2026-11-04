@@ -49,9 +49,7 @@ print(len(docs), len(categories), len(category_names))
 
 
 from sentence_transformers import SentenceTransformer
-
-model_path = './all-MiniLM-L6-v2'  
-sentence_model = SentenceTransformer(model_path)
+sentence_model = SentenceTransformer('all-MiniLM-L6-v2', cache_folder="./models")
 embeddings = sentence_model.encode(docs, show_progress_bar=True)
 
 from transformers import pipeline

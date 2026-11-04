@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=summary-unsupervised
+#SBATCH --job-name=content-semisupervised
 #SBATCH --time=06:00:00
 #SBATCH --account=comp_sci
 #SBATCH --partition=gpu
@@ -19,7 +19,7 @@ conda activate topic
 pip install -e .
 
 #### Run the eval_blimp.sh script
-python ./summary_unsupervised.py
+python ./semisup_content.py
 
 echo "----------- Job $SLURM_JOBID complete"
 

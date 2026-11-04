@@ -3,6 +3,7 @@ from bertopic import BERTopic
 import ijson
 import csv
 import random
+from sklearn.feature_extraction.text import CountVectorizer
 
 summaries = []
 with open('news_dialogue.json', 'r') as f:
@@ -32,12 +33,11 @@ y = [label if label in indices else -1 for label in categories]
             
 from sentence_transformers import SentenceTransformer
 
-model_path = './all-MiniLM-L6-v2'
-sentence_model = SentenceTransformer(model_path)
+sentence_model = SentenceTransformer("all-MiniLM-L6-v2", cache_folder="./models"  )
+vectorizer_model = CountVectorizer(stop_words="english")
 
-topic_model = BERTopic(verbose=True, embedding_model=sentence_model).fit(docs, y=y)
-
-topic_labels = topic_model.generate_topic_labels(nr_words = 3, topic_prefix = False, word_length = 15, separator = " - ")
+topic_model = BERTopic(verbose=True, vectorizer_model=vectorizer_model, embedding_model=sentence_model, nr_topics = 15, top_n_words = 60).fit(docs, y=y)
+topic_labels = topic_model.generate_topic_labels(nr_words = 5, topic_prefix = False, word_length = 15, separator = " - ")
 topic_model.set_topic_labels(topic_labels)
 
 topic_info = topic_model.get_topic_info()
@@ -48,7 +48,7 @@ if 'Representative_Docs' in topic_info.columns:
 
 if 'Representative_Docs' in document_info.columns and 'Document' in document_info.columns:
     document_info = document_info.drop(columns=['Representative_Docs', 'Document'])
-topic_info.to_csv('content_news_topic_info.tsv', sep='\t', index=False)
-document_info.to_csv('content_news_document_info.tsv', sep='\t', index=False)
+topic_info.to_csv('./newest_semisup/semisup_content_topic_info.tsv', sep='\t', index=False)
+document_info.to_csv('./newest_semisup/semisup_content_document_info.tsv', sep='\t', index=False)
 
 print("Topic information and document information have been saved to 'topic_info.tsv' and 'document_info.tsv'.")

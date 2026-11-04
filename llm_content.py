@@ -31,19 +31,12 @@ docs = summaries
 # y = [label if label in indices else -1 for label in categories]
             
 from sentence_transformers import SentenceTransformer
+sentence_model = SentenceTransformer('all-MiniLM-L6-v2', cache_folder="./models")
 
-model_path = './all-MiniLM-L6-v2'
-sentence_model = SentenceTransformer(model_path)
-
-#topic_model = BERTopic(verbose=True, embedding_model=sentence_model).fit(docs, y=y)
-
+# topic_model = BERTopic(verbose=True, embedding_model=sentence_model).fit(docs, y=y)
 # topic_labels = topic_model.generate_topic_labels(nr_words = 3, topic_prefix = False, word_length = 15, separator = " - ")
 # topic_model.set_topic_labels(topic_labels)
 
-from sentence_transformers import SentenceTransformer
-
-model_path = './all-MiniLM-L6-v2'
-sentence_model = SentenceTransformer(model_path)
 embeddings = sentence_model.encode(docs, show_progress_bar=True)
 
 from transformers import pipeline

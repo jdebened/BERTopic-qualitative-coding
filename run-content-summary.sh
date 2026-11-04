@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=llm-model
+#SBATCH --job-name=summary-unsupervised
 #SBATCH --time=06:00:00
 #SBATCH --account=comp_sci
 #SBATCH --partition=gpu
@@ -19,7 +19,7 @@ conda activate topic
 pip install -e .
 
 #### Run the eval_blimp.sh script
-python llm_trial.py
+python ./summary_unsupervised_content.py
 
 echo "----------- Job $SLURM_JOBID complete"
 

@@ -5,6 +5,7 @@ import ijson
 import csv
 import random
 import sys
+from sklearn.feature_extraction.text import CountVectorizer
 
 summaries = []
 with open('news_dialogue.json', 'r') as f:
@@ -41,13 +42,15 @@ ctfidf_model = ClassTfidfTransformer(
     seed_words=seed_words,
     seed_multiplier=2
 )
+vectorizer_model = CountVectorizer(stop_words="english")
 
 topic_model = BERTopic(
     umap_model=umap_model,
     min_topic_size=15,
     ctfidf_model=ctfidf_model,
     nr_topics=15,
-    top_n_words=30
+    top_n_words=60,
+    vectorizer_model=vectorizer_model
 ).fit(docs)
 
 topic_info = topic_model.get_topic_info()
@@ -58,8 +61,8 @@ if 'Representative_Docs' in topic_info.columns:
 
 if 'Representative_Docs' in document_info.columns and 'Document' in document_info.columns:
     document_info = document_info.drop(columns=['Representative_Docs', 'Document'])
-topic_info.to_csv(f'./modified/seeds_content_topic_info_{i}.tsv', sep='\t', index=False)
-document_info.to_csv(f'./modified/seeds_content_document_info_{i}.tsv', sep='\t', index=False)
+topic_info.to_csv(f'./newest_seedwords/seeds_content_topic_info_{i}.tsv', sep='\t', index=False)
+document_info.to_csv(f'./newest_seedwords/seeds_content_document_info_{i}.tsv', sep='\t', index=False)
 
 print("Topic information and document information have been saved to 'topic_info.tsv' and 'document_info.tsv'.")
 

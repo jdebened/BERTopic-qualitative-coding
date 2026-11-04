@@ -1,6 +1,7 @@
 slurm*
 llm_label
 20_newsgroups
+MTS-Dialog_Data
 sentence-transformers
 sentence_transformers
 llama2
@@ -14,9 +15,11 @@ llama_label
 *.tsv
 cuda-test*
 README1.md
-news_dialogue.json
-, probabilities = topic_model.fit_transform(docs)
-env.yml
+*.json
 umap
 seed_words
 modified
+*.html
+requirements.txt
+env.yml
+mts/**/*.txt

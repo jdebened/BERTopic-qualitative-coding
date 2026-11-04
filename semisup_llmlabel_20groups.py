@@ -50,8 +50,7 @@ print(len(docs), len(categories), len(category_names))
 
 from sentence_transformers import SentenceTransformer
 
-model_path = './all-MiniLM-L6-v2'  
-sentence_model = SentenceTransformer(model_path)
+sentence_model = SentenceTransformer("all-MiniLM-L6-v2", cache_folder="./models"  )
 
 labels_to_add = ['comp.graphics', 'comp.os.ms-windows.misc',
               'comp.sys.ibm.pc.hardware', 'comp.sys.mac.hardware',

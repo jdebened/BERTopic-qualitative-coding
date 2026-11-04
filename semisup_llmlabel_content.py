@@ -31,9 +31,7 @@ docs = summaries
 y = [label if label in indices else -1 for label in categories]
             
 from sentence_transformers import SentenceTransformer
-
-model_path = './all-MiniLM-L6-v2'
-sentence_model = SentenceTransformer(model_path)
+sentence_model = SentenceTransformer('all-MiniLM-L6-v2', cache_folder="./models")
 
 topic_model = BERTopic(verbose=True, embedding_model=sentence_model).fit(docs, y=y)
 

@@ -49,9 +49,7 @@ print(len(docs), len(categories), len(category_names))
 
 
 from sentence_transformers import SentenceTransformer
-
-model_path = './all-MiniLM-L6-v2'  
-sentence_model = SentenceTransformer(model_path, device='cpu')
+sentence_model = SentenceTransformer('all-MiniLM-L6-v2', cache_folder="./models", device='cpu')
 
 all_docs = docs
 doc_chunks = [all_docs[i:i+1000] for i in range(0, len(all_docs), 1000)]
